@@ -97,7 +97,7 @@ $decoratedOrders = new \Interview2025\OrderDecorator($ordersJsonResource);
                     Placed in GBP and were £100 or more
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-
+                        <?php echo array_sum(array_column($decoratedOrders->gbpOrdersWithMinAmount(), 'price')) ?>
                   </dd>
                 </dl>
               </div>
@@ -109,7 +109,7 @@ $decoratedOrders = new \Interview2025\OrderDecorator($ordersJsonResource);
                     Placed in GBP
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+                        <?php echo array_sum(array_column($decoratedOrders->paidInGBP(), 'price')) ?>
                   </dd>
                 </dl>
               </div>
@@ -121,7 +121,7 @@ $decoratedOrders = new \Interview2025\OrderDecorator($ordersJsonResource);
                     Placed in GBP and were shipped to Essex
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+                        <?php echo array_sum(array_column($decoratedOrders->gbpOrdersShippedToEssex(), 'price')) ?>
                   </dd>
                 </dl>
               </div>

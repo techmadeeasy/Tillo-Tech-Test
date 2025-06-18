@@ -18,7 +18,10 @@ class OrderDecorator
      */
     public function freeOrder(): array
     {
-        return  array_filter($this->orderJsonResource->orders(), fn ($order) => (int) $order['price'] === 0);
+        return  array_filter(
+            $this->orderJsonResource->orders(),
+            fn ($order) => (int) $order['price'] === 0
+        );
     }
 
     /**
@@ -47,5 +50,29 @@ class OrderDecorator
         );
     }
 
+    /**
+     * Get the orders placed in GBP and with minimum amount.
+     * @param int $minAmount
+     * @return array
+     */
+    public function gbpOrdersWithMinAmount(int $minAmount = 100): array
+    {
+        return array_filter(
+            $this->paidInGBP(),
+            fn ($order) => (float) $order['price'] >= $minAmount
+        );
+    }
 
+    /**
+     * Get the orders placed in GBP and shipped to Essex.
+     *
+     * @return array
+     */
+    public function gbpOrdersShippedToEssex(): array
+    {
+        return array_filter(
+            $this->shippedToEssex(),
+            fn ($order) => strtoupper($order['currency']) === 'GBP'
+        );
+    }
 }

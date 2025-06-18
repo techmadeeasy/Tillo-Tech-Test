@@ -13,7 +13,7 @@
 
 3. Count the number of orders that were placed in GBP?
 
-> Answer: 118
+> Answer: 114
 
 4. Count the number of orders that were shipped to Essex?
 
@@ -21,12 +21,12 @@
 
 5. Sum the cost of orders that were placed in GBP and were £100 or more?
 
-> Answer: 
+> Answer: 35596.85
 
 6. Sum the cost of orders that were placed in GBP?
 
-> Answer: 
+> Answer: 37499.87
 
 7. Sum the cost of orders that were placed in GBP and were shipped to Essex?
 
-> Answer: 
+> Answer: 704.74
