@@ -33,7 +33,7 @@ class OrderDecorator
     {
         return array_filter(
             $this->orderJsonResource->orders(),
-            fn ($order) => strtoupper($order['currency']) === 'GBP'
+            fn ($order) => strtoupper($order['currency']) === CurrencyEnum::GBP->name
         );
     }
 
@@ -72,7 +72,7 @@ class OrderDecorator
     {
         return array_filter(
             $this->shippedToEssex(),
-            fn ($order) => strtoupper($order['currency']) === 'GBP'
+            fn ($order) => strtoupper($order['currency']) === CurrencyEnum::GBP->name
         );
     }
 }

@@ -1,4 +1,6 @@
 <?php
+
+use Interview2025\CurrencyEnum;
 use PHPUnit\Framework\TestCase;
 use Interview2025\Order;
 use Interview2025\OrderDecorator;
@@ -12,13 +14,13 @@ class OrderTest extends TestCase
     protected function setUp(): void
     {
         $this->data = [
-            ['id' => 1, 'price' => 0, 'currency' => 'USD'],
-            ['id' => 2, 'price' => 50, 'currency' => 'GBP'],
-            ['id' => 3, 'price' => 150, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'Essex']]],
-            ['id' => 4, 'price' => 0, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'Essex']]],
-            ['id' => 5, 'price' => 200, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'London']]],
-            ['id' => 6, 'price' => 250, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'Essex']]],
-            ['id' => 7, 'price' => 75, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'essex']]],
+            ['id' => 1, 'price' => 0, 'currency' => CurrencyEnum::USD->name],
+            ['id' => 2, 'price' => 50, 'currency' => CurrencyEnum::GBP->name],
+            ['id' => 3, 'price' => 150, 'currency' =>  CurrencyEnum::GBP->name, 'customer' => ['shipping_address' => ['county' => 'Essex']]],
+            ['id' => 4, 'price' => 0, 'currency' =>  CurrencyEnum::GBP->name, 'customer' => ['shipping_address' => ['county' => 'Essex']]],
+            ['id' => 5, 'price' => 200, 'currency' =>  CurrencyEnum::GBP->name, 'customer' => ['shipping_address' => ['county' => 'London']]],
+            ['id' => 6, 'price' => 250, 'currency' =>  CurrencyEnum::GBP->name, 'customer' => ['shipping_address' => ['county' => 'Essex']]],
+            ['id' => 7, 'price' => 75, 'currency' =>  CurrencyEnum::GBP->name, 'customer' => ['shipping_address' => ['county' => 'essex']]],
         ];
 
         $this->jsonResource = new Order($this->data);
@@ -38,7 +40,7 @@ class OrderTest extends TestCase
     public function testPaidInGBP(): void
     {
         $result = $this->decorator->paidInGBP();
-        $expectedIds = [2, 3, 5, 6, 7];
+        $expectedIds = [2, 3, 4, 5, 6, 7];
         $resultIds = array_column($result, 'id');
         sort($expectedIds);
         sort($resultIds);
