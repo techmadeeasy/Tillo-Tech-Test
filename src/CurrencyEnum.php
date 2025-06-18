@@ -7,4 +7,12 @@ enum CurrencyEnum
     case GBP;
 
     //.....
+
+    public function getSymbol(): string
+    {
+        return match ($this) {
+            self::USD => '$',
+            self::GBP => '£',
+        };
+    }
 }

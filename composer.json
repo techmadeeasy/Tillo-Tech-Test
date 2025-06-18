@@ -13,7 +13,10 @@
     "autoload": {
         "psr-4": {
             "Interview2025\\": "src/"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.75",
@@ -23,5 +26,5 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    },
+    }
 }
