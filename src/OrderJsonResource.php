@@ -4,13 +4,11 @@ namespace Interview2025;
 
 class OrderJsonResource
 {
-    public $data = [];
     /**
      * OrderJsonResource constructor.
      */
-    public function __construct()
+    public function __construct(public $data)
     {
-        $this->data = json_decode(file_get_contents(__DIR__ . '/' . "../orders.json"), true);
     }
 
     /**
@@ -18,14 +16,31 @@ class OrderJsonResource
      *
      * @return array
      */
-    public function freeOrder()
+    public function orders(): array
     {
-        $freeOrders = [];
-        foreach ($this->data as $order) {
-            if ($order['price'] === 0) {
-                $freeOrders[] = $order;
-            }
-        }
-        return $freeOrders;
+        return $this->data;
+    }
+
+    /**
+     * Get the paid orders.
+     *
+     * @return array
+     */
+    public function paidOrders(): array
+    {
+        return array_filter($this->data, fn ($order) => intval($order['price']) > 0);
+    }
+
+    /**
+     * Get the orders with shipping address
+     *
+     * @return array
+     */
+    public function shippedOrders(): array
+    {
+        return array_filter(
+            $this->data,
+            fn ($order) => isset($order['customer']['shipping_address']['county'])
+        );
     }
 }

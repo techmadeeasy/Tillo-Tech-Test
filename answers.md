@@ -9,15 +9,15 @@
 
 2. Count the number of orders that were FREE?
 
-> Answer: 
+> Answer: 12
 
 3. Count the number of orders that were placed in GBP?
 
-> Answer: 
+> Answer: 118
 
 4. Count the number of orders that were shipped to Essex?
 
-> Answer: 
+> Answer: 14
 
 5. Sum the cost of orders that were placed in GBP and were £100 or more?
 

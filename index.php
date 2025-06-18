@@ -4,7 +4,9 @@
  require('vendor/autoload.php');
 
 // Start your implementation here
-$orders = new \Interview2025\OrderJsonResource();
+$ordersPayload = json_decode(file_get_contents(__DIR__ . '/' . "./orders.json"), true);
+$ordersJsonResource = new \Interview2025\OrderJsonResource($ordersPayload);
+$decoratedOrders = new \Interview2025\OrderDecorator($ordersJsonResource);
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +54,7 @@ $orders = new \Interview2025\OrderJsonResource();
                     FREE
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+                    <?php echo count($decoratedOrders->freeOrder()); ?>
                   </dd>
                 </dl>
               </div>
@@ -64,7 +66,7 @@ $orders = new \Interview2025\OrderJsonResource();
                     Placed in GBP
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+                    <?php echo count($decoratedOrders->paidInGBP()); ?>
                   </dd>
                 </dl>
               </div>
@@ -76,7 +78,7 @@ $orders = new \Interview2025\OrderJsonResource();
                     Shipped to Essex
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+                    <?php echo count($decoratedOrders->shippedToEssex()); ?>
                   </dd>
                 </dl>
               </div>
@@ -95,7 +97,7 @@ $orders = new \Interview2025\OrderJsonResource();
                     Placed in GBP and were £100 or more
                   </dt>
                   <dd class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                    ###
+
                   </dd>
                 </dl>
               </div>
