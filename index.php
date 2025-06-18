@@ -1,11 +1,11 @@
 <?php
-
+declare(strict_types=1);
 // Un-comment if using composer
  require('vendor/autoload.php');
 
 // Start your implementation here
 $ordersPayload = json_decode(file_get_contents(__DIR__ . '/' . "./orders.json"), true);
-$ordersJsonResource = new \Interview2025\OrderJsonResource($ordersPayload);
+$ordersJsonResource = new \Interview2025\Order($ordersPayload);
 $decoratedOrders = new \Interview2025\OrderDecorator($ordersJsonResource);
 
 ?>

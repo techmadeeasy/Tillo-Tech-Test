@@ -2,12 +2,12 @@
 
 namespace Interview2025;
 
-class OrderJsonResource
+readonly class Order
 {
     /**
      * OrderJsonResource constructor.
      */
-    public function __construct(public $data)
+    public function __construct(public array $data)
     {
     }
 

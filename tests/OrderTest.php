@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use Interview2025\OrderJsonResource;
+use Interview2025\Order;
 use Interview2025\OrderDecorator;
 
 class OrderTest extends TestCase
 {
     private array $data;
-    private OrderJsonResource $jsonResource;
+    private Order $jsonResource;
     private OrderDecorator $decorator;
 
     protected function setUp(): void
@@ -21,7 +21,7 @@ class OrderTest extends TestCase
             ['id' => 7, 'price' => 75, 'currency' => 'GBP', 'customer' => ['shipping_address' => ['county' => 'essex']]],
         ];
 
-        $this->jsonResource = new OrderJsonResource($this->data);
+        $this->jsonResource = new Order($this->data);
         $this->decorator = new OrderDecorator($this->jsonResource);
     }
 

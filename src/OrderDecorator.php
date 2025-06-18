@@ -4,9 +4,9 @@ namespace Interview2025;
 
 class OrderDecorator
 {
-    private OrderJsonResource $orderJsonResource;
+    private Order $orderJsonResource;
 
-    public function __construct(OrderJsonResource $orderJsonResource)
+    public function __construct(Order $orderJsonResource)
     {
         $this->orderJsonResource = $orderJsonResource;
     }
@@ -20,7 +20,7 @@ class OrderDecorator
     {
         return  array_filter(
             $this->orderJsonResource->orders(),
-            fn ($order) => (int) $order['price'] === 0
+            fn ($order) => (float) $order['price'] == 0
         );
     }
 
@@ -32,7 +32,7 @@ class OrderDecorator
     public function paidInGBP(): array
     {
         return array_filter(
-            $this->orderJsonResource->paidOrders(),
+            $this->orderJsonResource->orders(),
             fn ($order) => strtoupper($order['currency']) === 'GBP'
         );
     }
@@ -52,10 +52,10 @@ class OrderDecorator
 
     /**
      * Get the orders placed in GBP and with minimum amount.
-     * @param int $minAmount
+     * @param float $minAmount
      * @return array
      */
-    public function gbpOrdersWithMinAmount(int $minAmount = 100): array
+    public function gbpOrdersWithMinAmount(float $minAmount = 100): array
     {
         return array_filter(
             $this->paidInGBP(),
